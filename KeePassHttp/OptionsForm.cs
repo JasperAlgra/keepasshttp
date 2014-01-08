@@ -21,6 +21,11 @@ namespace KeePassHttp
         {
             _config = config;
             InitializeComponent();
+
+            // Find all groups and add to comboBox.
+            // Display the group names + add Uuid values to item
+            PwDatabase db = KeePass.Program.MainForm.DocumentManager.ActiveDatabase;
+            foreach (PwGroup thisGroup in db.RootGroup.GetGroups(true)) RootGroup.Items.Add(new ComboBoxItem(thisGroup.Name, thisGroup.Uuid.ToHexString()));
         }
 
 
@@ -28,9 +33,32 @@ namespace KeePassHttp
         {
             var kphe = new KeePassHttpExt();
             var root = db.RootGroup;
+
+            // Get stored RootGroup from config if any
+            if (_config.RootGroup != "")
+            {
+                var GroupUuid = new PwUuid(StringToByteArray(_config.RootGroupUuid));
+                root = root.FindGroup(GroupUuid, true);
+            }
+            
             var uuid = new PwUuid(kphe.KEEPASSHTTP_UUID);
             var entry = root.FindEntry(uuid, false);
             return entry;
+        }
+
+        static byte[] GetBytes(string str)
+        {
+            byte[] bytes = new byte[str.Length * sizeof(char)];
+            System.Buffer.BlockCopy(str.ToCharArray(), 0, bytes, 0, bytes.Length);
+            return bytes;
+        }
+
+        public static byte[] StringToByteArray(string hex)
+        {
+            return Enumerable.Range(0, hex.Length)
+                             .Where(x => x % 2 == 0)
+                             .Select(x => Convert.ToByte(hex.Substring(x, 2), 16))
+                             .ToArray();
         }
 
         private void OptionsForm_Load(object sender, EventArgs e)
@@ -46,7 +74,12 @@ namespace KeePassHttp
             SortByUsernameRadioButton.Checked = _config.SortResultByUsername;
             SortByTitleRadioButton.Checked = !_config.SortResultByUsername;
             portNumber.Value = _config.ListenerPort;
+            //RootGroup.Text = _config.RootGroup;
+            //RootGroup.Text = _config.RootGroupUuid;
+            RootGroup.Items.Add(new ComboBoxItem(_config.RootGroup, _config.RootGroupUuid));
+            RootGroup.SelectedIndex = RootGroup.Items.Count -1 ;    // Select latest
         }
+
 
         private void okButton_Click(object sender, EventArgs e)
         {
@@ -60,6 +93,8 @@ namespace KeePassHttp
             _config.ReturnStringFields = returnStringFieldsCheckbox.Checked;
             _config.SortResultByUsername = SortByUsernameRadioButton.Checked;
             _config.ListenerPort = (int)portNumber.Value;
+            _config.RootGroup = RootGroup.Text;
+            _config.RootGroupUuid = ((ComboBoxItem)RootGroup.SelectedItem).HiddenValue;
 
             if (_restartRequired)
             {
@@ -200,5 +235,8 @@ namespace KeePassHttp
         {
             _restartRequired = (_config.ListenerPort != portNumber.Value);
         }
+
     }
+
+
 }

@@ -33,6 +33,7 @@
             this.okButton = new System.Windows.Forms.Button();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.RootFolderLabel = new System.Windows.Forms.Label();
             this.SortByUsernameRadioButton = new System.Windows.Forms.RadioButton();
             this.SortByTitleRadioButton = new System.Windows.Forms.RadioButton();
             this.matchSchemesCheckbox = new System.Windows.Forms.CheckBox();
@@ -42,6 +43,10 @@
             this.credMatchingCheckbox = new System.Windows.Forms.CheckBox();
             this.credNotifyCheckbox = new System.Windows.Forms.CheckBox();
             this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.label7 = new System.Windows.Forms.Label();
+            this.portNumber = new System.Windows.Forms.NumericUpDown();
+            this.label5 = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.returnStringFieldsCheckbox = new System.Windows.Forms.CheckBox();
@@ -50,10 +55,8 @@
             this.label1 = new System.Windows.Forms.Label();
             this.credAllowUpdatesCheckbox = new System.Windows.Forms.CheckBox();
             this.credAllowAccessCheckbox = new System.Windows.Forms.CheckBox();
-            this.label6 = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
-            this.portNumber = new System.Windows.Forms.NumericUpDown();
-            this.label7 = new System.Windows.Forms.Label();
+            this.RootFolder = new System.Windows.Forms.TextBox();
+            this.RootGroup = new System.Windows.Forms.ComboBox();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
@@ -86,9 +89,9 @@
             // 
             // tabControl1
             // 
-            this.tabControl1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this.tabControl1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+                        | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
             this.tabControl1.Controls.Add(this.tabPage1);
             this.tabControl1.Controls.Add(this.tabPage2);
             this.tabControl1.Location = new System.Drawing.Point(1, 3);
@@ -99,6 +102,9 @@
             // 
             // tabPage1
             // 
+            this.tabPage1.Controls.Add(this.RootGroup);
+            this.tabPage1.Controls.Add(this.RootFolder);
+            this.tabPage1.Controls.Add(this.RootFolderLabel);
             this.tabPage1.Controls.Add(this.SortByUsernameRadioButton);
             this.tabPage1.Controls.Add(this.SortByTitleRadioButton);
             this.tabPage1.Controls.Add(this.matchSchemesCheckbox);
@@ -114,6 +120,15 @@
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "General";
             this.tabPage1.UseVisualStyleBackColor = true;
+            // 
+            // RootFolderLabel
+            // 
+            this.RootFolderLabel.AutoSize = true;
+            this.RootFolderLabel.Location = new System.Drawing.Point(4, 263);
+            this.RootFolderLabel.Name = "RootFolderLabel";
+            this.RootFolderLabel.Size = new System.Drawing.Size(231, 13);
+            this.RootFolderLabel.TabIndex = 21;
+            this.RootFolderLabel.Text = "Default root folder for KeePassHttp browser key";
             // 
             // SortByUsernameRadioButton
             // 
@@ -145,13 +160,13 @@
             this.matchSchemesCheckbox.Size = new System.Drawing.Size(375, 30);
             this.matchSchemesCheckbox.TabIndex = 17;
             this.matchSchemesCheckbox.Text = "&Match URL schemes\r\nonly entries with the same scheme (http://, https://, ftp://," +
-    " ...) are returned";
+                " ...) are returned";
             this.matchSchemesCheckbox.UseVisualStyleBackColor = true;
             // 
             // removePermissionsButton
             // 
-            this.removePermissionsButton.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this.removePermissionsButton.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
             this.removePermissionsButton.ImageAlign = System.Drawing.ContentAlignment.TopLeft;
             this.removePermissionsButton.Location = new System.Drawing.Point(14, 216);
             this.removePermissionsButton.Name = "removePermissionsButton";
@@ -173,8 +188,8 @@
             // 
             // removeButton
             // 
-            this.removeButton.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this.removeButton.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
             this.removeButton.Location = new System.Drawing.Point(14, 182);
             this.removeButton.Name = "removeButton";
             this.removeButton.Size = new System.Drawing.Size(372, 28);
@@ -191,7 +206,7 @@
             this.credMatchingCheckbox.Size = new System.Drawing.Size(238, 30);
             this.credMatchingCheckbox.TabIndex = 9;
             this.credMatchingCheckbox.Text = "&Return only best matching entries for an URL\r\ninstead of all entries for the who" +
-    "le domain";
+                "le domain";
             this.credMatchingCheckbox.UseVisualStyleBackColor = true;
             // 
             // credNotifyCheckbox
@@ -225,6 +240,57 @@
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Advanced";
             this.tabPage2.UseVisualStyleBackColor = true;
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(132, 296);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(241, 39);
+            this.label7.TabIndex = 30;
+            this.label7.Text = "Default: 19455\r\nDon\'t forget to change the port number also in\r\nthe plugins like " +
+                "chromeIPass, PassIFox, kypass,...";
+            // 
+            // portNumber
+            // 
+            this.portNumber.Location = new System.Drawing.Point(56, 296);
+            this.portNumber.Maximum = new decimal(new int[] {
+            99999,
+            0,
+            0,
+            0});
+            this.portNumber.Minimum = new decimal(new int[] {
+            1025,
+            0,
+            0,
+            0});
+            this.portNumber.Name = "portNumber";
+            this.portNumber.Size = new System.Drawing.Size(60, 20);
+            this.portNumber.TabIndex = 29;
+            this.portNumber.Value = new decimal(new int[] {
+            19455,
+            0,
+            0,
+            0});
+            this.portNumber.ValueChanged += new System.EventHandler(this.portNumber_ValueChanged);
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(6, 274);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(312, 13);
+            this.label5.TabIndex = 27;
+            this.label5.Text = "Change the default port number if you have connection problems";
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(21, 298);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(29, 13);
+            this.label6.TabIndex = 26;
+            this.label6.Text = "Port:";
             // 
             // label4
             // 
@@ -305,56 +371,20 @@
             this.credAllowAccessCheckbox.Text = "Always allow &access to entries";
             this.credAllowAccessCheckbox.UseVisualStyleBackColor = true;
             // 
-            // label6
+            // RootFolder
             // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(21, 298);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(29, 13);
-            this.label6.TabIndex = 26;
-            this.label6.Text = "Port:";
+            this.RootFolder.Location = new System.Drawing.Point(7, 306);
+            this.RootFolder.Name = "RootFolder";
+            this.RootFolder.Size = new System.Drawing.Size(379, 20);
+            this.RootFolder.TabIndex = 22;
             // 
-            // label5
+            // RootGroup
             // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(6, 274);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(312, 13);
-            this.label5.TabIndex = 27;
-            this.label5.Text = "Change the default port number if you have connection problems";
-            // 
-            // portNumber
-            // 
-            this.portNumber.Location = new System.Drawing.Point(56, 296);
-            this.portNumber.Maximum = new decimal(new int[] {
-            99999,
-            0,
-            0,
-            0});
-            this.portNumber.Minimum = new decimal(new int[] {
-            1025,
-            0,
-            0,
-            0});
-            this.portNumber.Name = "portNumber";
-            this.portNumber.Size = new System.Drawing.Size(60, 20);
-            this.portNumber.TabIndex = 29;
-            this.portNumber.Value = new decimal(new int[] {
-            19455,
-            0,
-            0,
-            0});
-            this.portNumber.ValueChanged += new System.EventHandler(this.portNumber_ValueChanged);
-            // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(132, 296);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(241, 39);
-            this.label7.TabIndex = 30;
-            this.label7.Text = "Default: 19455\r\nDon\'t forget to change the port number also in\r\nthe plugins like " +
-    "chromeIPass, PassIFox, kypass,...";
+            this.RootGroup.FormattingEnabled = true;
+            this.RootGroup.Location = new System.Drawing.Point(14, 279);
+            this.RootGroup.Name = "RootGroup";
+            this.RootGroup.Size = new System.Drawing.Size(372, 21);
+            this.RootGroup.TabIndex = 23;
             // 
             // OptionsForm
             // 
@@ -410,5 +440,8 @@
         private System.Windows.Forms.NumericUpDown portNumber;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Label RootFolderLabel;
+        private System.Windows.Forms.TextBox RootFolder;
+        private System.Windows.Forms.ComboBox RootGroup;
     }
 }

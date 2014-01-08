@@ -88,6 +88,13 @@ namespace KeePassHttp {
             var list = new PwObjectList<PwEntry>();
 
             var root = host.Database.RootGroup;
+            // Get stored RootGroup from config if any
+            var configOpt = new ConfigOpt(this.host.CustomConfig);
+            if (configOpt.RootGroup != "")
+            {
+                var GroupUuid = new PwUuid(GetBytes(configOpt.RootGroupUuid));
+                root = root.FindGroup(GroupUuid, true);
+            }
 
             var parms = MakeSearchParameters();
 
@@ -768,6 +775,14 @@ namespace KeePassHttp {
                 realm = CryptoTransform(r.Realm, true, false, aes, CMode.DECRYPT);
 
             var root = host.Database.RootGroup;
+            // Get stored RootGroup from config if any
+            var configOpt = new ConfigOpt(this.host.CustomConfig);
+            if (configOpt.RootGroup != "")
+            {
+                var GroupUuid = new PwUuid(StringToByteArray(configOpt.RootGroupUuid));
+                root = root.FindGroup(GroupUuid, true);
+            }
+
             var group = root.FindCreateGroup(KEEPASSHTTP_GROUP_NAME, false);
             if (group == null)
             {

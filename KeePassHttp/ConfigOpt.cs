@@ -15,6 +15,8 @@ namespace KeePassHttp
         const string ReturnStringFieldsKey = "KeePassHttp_ReturnStringFields";
         const string SortResultByUsernameKey = "KeePassHttp_SortResultByUsername";
         const string ListenerPortKey = "KeePassHttp_ListenerPort";
+        const string RootGroupKey = "KeePassHttp_RootGroup";
+        const string RootGroupUuidKey = "KeePassHttp_RootGroupUuid";
 
         public ConfigOpt(AceCustomConfig config)
         {
@@ -79,6 +81,19 @@ namespace KeePassHttp
         {
             get { return _config.GetLong(ListenerPortKey, KeePassHttpExt.DEFAULT_PORT); }
             set { _config.SetLong(ListenerPortKey, value); }
+        }
+
+        public string RootGroup
+        {
+            get { return _config.GetString(RootGroupKey, KeePassHttpExt.ROOT_GROUP); }
+            set { _config.SetString(RootGroupKey, value); }
+        }
+
+
+        public string RootGroupUuid
+        {
+            get { return _config.GetString(RootGroupUuidKey, KeePassHttpExt.ROOT_GROUP_UUID); }
+            set { _config.SetString(RootGroupUuidKey, value); }
         }
     }
 }

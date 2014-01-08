@@ -43,6 +43,9 @@ namespace KeePassHttp
         private IPluginHost host;
         private HttpListener listener;
         public const int DEFAULT_PORT = 19455;
+        public const string ROOT_GROUP      = "";   // string of RootGroup Name
+        public const string ROOT_GROUP_UUID = "";   // string of RootGroup Uuid
+
         /// <summary>
         /// TODO make configurable
         /// </summary>
@@ -88,9 +91,32 @@ namespace KeePassHttp
             }
         }
 
+        static byte[] GetBytes(string str)
+        {
+            byte[] bytes = new byte[str.Length * sizeof(char)];
+            System.Buffer.BlockCopy(str.ToCharArray(), 0, bytes, 0, bytes.Length);
+            return bytes;
+        }
+
+        public static byte[] StringToByteArray(string hex)
+        {
+            return Enumerable.Range(0, hex.Length)
+                             .Where(x => x % 2 == 0)
+                             .Select(x => Convert.ToByte(hex.Substring(x, 2), 16))
+                             .ToArray();
+        }
+
         private PwEntry GetConfigEntry(bool create)
         {
             var root = host.Database.RootGroup;
+            // Get stored RootGroup from config if any
+            var configOpt = new ConfigOpt(this.host.CustomConfig);
+            if (configOpt.RootGroup != "")
+            {
+                var GroupUuid = new PwUuid(StringToByteArray(configOpt.RootGroupUuid));
+                root = root.FindGroup(GroupUuid, true);
+            }
+
             var uuid = new PwUuid(KEEPASSHTTP_UUID);
             var entry = root.FindEntry(uuid, false);
             if (entry == null && create)
