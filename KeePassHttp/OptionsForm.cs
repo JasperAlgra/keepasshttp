@@ -23,6 +23,8 @@ namespace KeePassHttp
             InitializeComponent();
 
             // Find all groups and add to comboBox.
+            // Add one empty entry (for unsetting the root)
+            RootGroup.Items.Add(new ComboBoxItem("", ""));
             // Display the group names + add Uuid values to item
             PwDatabase db = KeePass.Program.MainForm.DocumentManager.ActiveDatabase;
             foreach (PwGroup thisGroup in db.RootGroup.GetGroups(true)) RootGroup.Items.Add(new ComboBoxItem(thisGroup.Name, thisGroup.Uuid.ToHexString()));
@@ -74,8 +76,6 @@ namespace KeePassHttp
             SortByUsernameRadioButton.Checked = _config.SortResultByUsername;
             SortByTitleRadioButton.Checked = !_config.SortResultByUsername;
             portNumber.Value = _config.ListenerPort;
-            //RootGroup.Text = _config.RootGroup;
-            //RootGroup.Text = _config.RootGroupUuid;
             RootGroup.Items.Add(new ComboBoxItem(_config.RootGroup, _config.RootGroupUuid));
             RootGroup.SelectedIndex = RootGroup.Items.Count -1 ;    // Select latest
         }

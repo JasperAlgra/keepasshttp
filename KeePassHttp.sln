@@ -6,9 +6,9 @@ EndProject
 Project("{911E67C6-3D85-4FCE-B560-20A9C3E3FF48}") = "KeePass", "_portable_\KeePass.exe", "{4D7AACA1-504B-4483-AE49-65A43761A552}"
 	ProjectSection(DebuggerProjectSystem) = preProject
 		PortSupplier = 00000000-0000-0000-0000-000000000000
-		Executable = C:\GitHub\keepasshttp\_portable_\KeePass.exe
+		Executable = C:\Password\_portable_\KeePass.exe
 		RemoteMachine = JASPERCUBE
-		StartingDirectory = C:\GitHub\keepasshttp\_portable_
+		StartingDirectory = C:\Password\_portable_
 		Environment = Default
 		LaunchingEngine = 00000000-0000-0000-0000-000000000000
 		LaunchSQLEngine = No

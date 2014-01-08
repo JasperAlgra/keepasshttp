@@ -33,6 +33,7 @@
             this.okButton = new System.Windows.Forms.Button();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.RootGroup = new System.Windows.Forms.ComboBox();
             this.RootFolderLabel = new System.Windows.Forms.Label();
             this.SortByUsernameRadioButton = new System.Windows.Forms.RadioButton();
             this.SortByTitleRadioButton = new System.Windows.Forms.RadioButton();
@@ -55,8 +56,6 @@
             this.label1 = new System.Windows.Forms.Label();
             this.credAllowUpdatesCheckbox = new System.Windows.Forms.CheckBox();
             this.credAllowAccessCheckbox = new System.Windows.Forms.CheckBox();
-            this.RootFolder = new System.Windows.Forms.TextBox();
-            this.RootGroup = new System.Windows.Forms.ComboBox();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
@@ -103,7 +102,6 @@
             // tabPage1
             // 
             this.tabPage1.Controls.Add(this.RootGroup);
-            this.tabPage1.Controls.Add(this.RootFolder);
             this.tabPage1.Controls.Add(this.RootFolderLabel);
             this.tabPage1.Controls.Add(this.SortByUsernameRadioButton);
             this.tabPage1.Controls.Add(this.SortByTitleRadioButton);
@@ -121,14 +119,22 @@
             this.tabPage1.Text = "General";
             this.tabPage1.UseVisualStyleBackColor = true;
             // 
+            // RootGroup
+            // 
+            this.RootGroup.FormattingEnabled = true;
+            this.RootGroup.Location = new System.Drawing.Point(14, 279);
+            this.RootGroup.Name = "RootGroup";
+            this.RootGroup.Size = new System.Drawing.Size(372, 21);
+            this.RootGroup.TabIndex = 23;
+            // 
             // RootFolderLabel
             // 
             this.RootFolderLabel.AutoSize = true;
-            this.RootFolderLabel.Location = new System.Drawing.Point(4, 263);
+            this.RootFolderLabel.Location = new System.Drawing.Point(4, 259);
             this.RootFolderLabel.Name = "RootFolderLabel";
-            this.RootFolderLabel.Size = new System.Drawing.Size(231, 13);
+            this.RootFolderLabel.Size = new System.Drawing.Size(274, 13);
             this.RootFolderLabel.TabIndex = 21;
-            this.RootFolderLabel.Text = "Default root folder for KeePassHttp browser key";
+            this.RootFolderLabel.Text = "Default Root-Group folder for key stored by KeePassHttp";
             // 
             // SortByUsernameRadioButton
             // 
@@ -371,21 +377,6 @@
             this.credAllowAccessCheckbox.Text = "Always allow &access to entries";
             this.credAllowAccessCheckbox.UseVisualStyleBackColor = true;
             // 
-            // RootFolder
-            // 
-            this.RootFolder.Location = new System.Drawing.Point(7, 306);
-            this.RootFolder.Name = "RootFolder";
-            this.RootFolder.Size = new System.Drawing.Size(379, 20);
-            this.RootFolder.TabIndex = 22;
-            // 
-            // RootGroup
-            // 
-            this.RootGroup.FormattingEnabled = true;
-            this.RootGroup.Location = new System.Drawing.Point(14, 279);
-            this.RootGroup.Name = "RootGroup";
-            this.RootGroup.Size = new System.Drawing.Size(372, 21);
-            this.RootGroup.TabIndex = 23;
-            // 
             // OptionsForm
             // 
             this.AcceptButton = this.okButton;
@@ -441,7 +432,6 @@
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label RootFolderLabel;
-        private System.Windows.Forms.TextBox RootFolder;
         private System.Windows.Forms.ComboBox RootGroup;
     }
 }
